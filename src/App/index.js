@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Alert, Button } from '@patternfly/react-core';
+import { css } from '@patternfly/react-styles';
+import styles from './app.styles';
 import './app.css';
 import '@patternfly/react-core/dist/styles/base.css';
 
@@ -17,6 +19,7 @@ export default class App extends Component {
         {isShowing && (
           <div className="notification-container">
             <Alert
+              className={css(styles.notification)}
               variant="success"
               title="Setup Complete"
               action={
