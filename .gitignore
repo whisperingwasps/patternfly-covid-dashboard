@@ -2,3 +2,6 @@
 dist
 yarn-error.log
 stats.json
+.idea
+dist0ld
+.DS_Store

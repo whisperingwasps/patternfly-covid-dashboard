@@ -15,10 +15,14 @@ module.exports = {
       {
         test: /\.js?$/,
         use: [
+          { loader: 'babel-loader' },
           {
-            loader: 'babel-loader'
+            loader: 'linaria/loader',
+            options: {
+              sourceMap: process.env.NODE_ENV !== 'production',
+            },
           }
-        ]
+        ],
       },
       {
         test: /\.(svg|ttf|eot|woff|woff2)$/,
@@ -30,10 +34,10 @@ module.exports = {
             limit: 5000
           }
         },
-        include: function (input) {
+        include(input) {
           // only process modules with this loader
           // if they live under a 'fonts' or 'pficon' directory
-          return (input.indexOf('fonts') > -1 || input.indexOf('pficon') > -1);
+          return input.indexOf('fonts') > -1 || input.indexOf('pficon') > -1;
         }
       },
       {
@@ -46,7 +50,7 @@ module.exports = {
           loader: 'svg-url-loader',
           options: {}
         },
-        include: function (input) {
+        include(input) {
           // only process modules with this loader
           // if they live under an 'images' directory
           return input.indexOf('images') > -1;

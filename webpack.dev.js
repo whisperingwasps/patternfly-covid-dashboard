@@ -6,7 +6,7 @@ const PORT = process.env.PORT || "9000";
 
 module.exports = merge(common, {
   mode: "development",
-  devtool: "inline-source-map",
+  devtool: "eval-source-map",
   devServer: {
     contentBase: "./dist",
     host: HOST,
@@ -22,7 +22,10 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"]
+        use: [
+          { loader: 'style-loader', options: { sourceMap: true } },
+          "css-loader"
+        ]
       }
     ]
   }
